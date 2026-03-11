@@ -615,11 +615,27 @@ body {
     
     .nav-menu {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: 0 5px;
+        gap: 5px;
     }
     
     .nav-item {
-        margin: 0 10px;
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        padding: 8px 5px;
+        font-size: 12px;
+    }
+    
+    .nav-item span {
+        font-size: 11px;
+    }
+    
+    .nav-item i {
+        font-size: 14px;
+        margin-right: 5px;
     }
     
     .language-selector {
@@ -644,33 +660,138 @@ body {
     
     .calculator-buttons {
         grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
+        gap: 5px;
+        padding: 0 5px;
     }
     
     .btn {
-        padding: 15px;
-        font-size: 14px;
+        padding: 12px 8px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+    
+    .btn.zero {
+        grid-column: span 2;
+    }
+    
+    .btn.operator.equals {
+        grid-row: span 2;
     }
     
     .display {
         font-size: 36px;
     }
+    
+    /* Estilos QR para móviles */
+    .qr-section {
+        padding: 20px;
+        margin-top: 10px;
+    }
+    
+    .qr-section h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .qr-container {
+        gap: 20px;
+    }
+    
+    .qr-code {
+        padding: 10px;
+    }
+    
+    .qr-code img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .qr-info {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .qr-info p {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .qr-url {
+        font-size: 12px;
+        word-break: break-all;
+    }
+    
+    .qr-copy-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+        margin-top: 8px;
+    }
 }
 
 @media (max-width: 480px) {
+    .nav-item {
+        padding: 6px 3px;
+        font-size: 11px;
+    }
+    
+    .nav-item span {
+        font-size: 10px;
+    }
+    
+    .nav-item i {
+        font-size: 12px;
+        margin-right: 3px;
+    }
+    
     .calculator-buttons {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3px;
+        padding: 0 3px;
+    }
+    
+    .btn {
+        padding: 10px 5px;
+        font-size: 12px;
+        border-radius: 4px;
     }
     
     .btn.zero {
-        grid-column: span 1;
+        grid-column: span 2;
     }
     
     .btn.operator.equals {
-        grid-row: span 1;
+        grid-row: span 2;
     }
     
     .display {
         font-size: 28px;
+    }
+    
+    /* Estilos QR para pantallas muy pequeñas */
+    .qr-section {
+        padding: 15px;
+    }
+    
+    .qr-section h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .qr-code img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .qr-info p {
+        font-size: 12px;
+    }
+    
+    .qr-url {
+        font-size: 11px;
+    }
+    
+    .qr-copy-btn {
+        padding: 6px 12px;
+        font-size: 11px;
     }
 }
