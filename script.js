@@ -496,7 +496,7 @@ class ScientificCalculator {
     }
 
     copyGitHubURL() {
-        const url = 'https://github.com/tu-usuario/calculadora';
+        const url = 'https://gabrielfxm.github.io';
         navigator.clipboard.writeText(url).then(() => {
             const copyBtn = document.getElementById('copyUrlBtn');
             const originalText = copyBtn.textContent;
