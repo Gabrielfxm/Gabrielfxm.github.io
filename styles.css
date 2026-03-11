@@ -4,17 +4,24 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: #0f0f1e;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
-    color: #ffffff;
-    height: 100vh;
+    color: #e0e0e0;
+    height: 100dvh;
+    width: 100vw;
     overflow: hidden;
 }
 
 .container {
     display: flex;
-    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Sidebar Izquierdo */
@@ -56,10 +63,18 @@ body {
     cursor: pointer;
     transition: color 0.3s;
     font-size: 18px;
+    display: none;
 }
 
 .mobile-toggle-btn:hover {
     color: #ffffff;
+}
+
+/* Mostrar botón móvil solo en pantallas pequeñas */
+@media (max-width: 768px) {
+    .mobile-toggle-btn {
+        display: block;
+    }
 }
 
 .settings-icon {
@@ -582,7 +597,7 @@ body {
     .sidebar-left {
         width: 200px;
     }
-    
+
     .sidebar-right {
         width: 250px;
     }
@@ -591,207 +606,277 @@ body {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
+        height: 100dvh;
+        min-height: 100dvh;
     }
-    
+
     .sidebar-left {
         width: 100%;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid #404040;
-        padding: 15px;
+        border-bottom: 2px solid #404040;
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: linear-gradient(180deg, #1e1e2e 0%, #2d2d3d 100%);
     }
-    
+
+    .logo-section {
+        margin-bottom: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo i {
+        font-size: 24px;
+    }
+
     .mobile-toggle-btn {
         display: block;
+        font-size: 16px;
     }
-    
-    .mobile-mode .sidebar-left {
+
+    .mobile-mode .nav-menu {
         display: none;
     }
-    
+
     .mobile-mode .main-content {
         margin-left: 0;
     }
-    
+
     .nav-menu {
         display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        padding: 0 5px;
+        justify-content: space-around;
+        align-items: center;
+        padding: 5px 0;
         gap: 5px;
     }
-    
+
     .nav-item {
         margin: 0;
         flex: 1;
+        text-align: center;
+        padding: 8px 3px;
+        font-size: 10px;
         min-width: 0;
-        padding: 8px 5px;
-        font-size: 12px;
+        border-radius: 6px;
     }
-    
-    .nav-item span {
-        font-size: 11px;
-    }
-    
+
     .nav-item i {
+        display: block;
         font-size: 14px;
-        margin-right: 5px;
+        margin-bottom: 2px;
     }
-    
+
+    .nav-item span {
+        display: block;
+        font-size: 8px;
+        line-height: 1;
+    }
+
+    .nav-item.active {
+        background: linear-gradient(135deg, #00d4ff, #0099cc);
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+    }
+
     .language-selector {
         display: none;
     }
-    
+
+    .main-content {
+        flex: 1;
+        padding: 10px;
+    }
+
+    .calculator-container {
+        padding: 5px;
+        max-width: 100%;
+    }
+
+    .display-container {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .display {
+        font-size: 28px;
+        min-height: 50px;
+    }
+
+    .calculator-buttons {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 4px;
+        padding: 5px;
+    }
+
+    .btn {
+        padding: 10px 2px;
+        font-size: 13px;
+        border-radius: 4px;
+        min-height: 40px;
+        transition: all 0.2s;
+    }
+
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    .btn.zero {
+        grid-column: span 2;
+    }
+
+    .btn.operator.equals {
+        grid-row: span 2;
+    }
+
     .sidebar-right {
         width: 100%;
-        height: 300px;
+        height: 250px;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
         border-left: none;
-        border-top: 1px solid #404040;
+        border-top: 2px solid #404040;
         transform: translateY(100%);
+        z-index: 1000;
     }
-    
+
     .sidebar-right.active {
         transform: translateY(0);
     }
-    
-    .calculator-buttons {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 5px;
-        padding: 0 5px;
-    }
-    
-    .btn {
-        padding: 12px 8px;
-        font-size: 13px;
-        border-radius: 6px;
-    }
-    
-    .btn.zero {
-        grid-column: span 2;
-    }
-    
-    .btn.operator.equals {
-        grid-row: span 2;
-    }
-    
-    .display {
-        font-size: 36px;
-    }
-    
+
     /* Estilos QR para móviles */
     .qr-section {
-        padding: 20px;
+        padding: 15px;
         margin-top: 10px;
+        text-align: center;
     }
-    
+
     .qr-section h2 {
-        font-size: 20px;
+        font-size: 18px;
         margin-bottom: 15px;
     }
-    
+
     .qr-container {
-        gap: 20px;
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
     }
-    
+
     .qr-code {
-        padding: 10px;
+        padding: 8px;
     }
-    
+
     .qr-code img {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
     }
-    
+
     .qr-info {
         max-width: 100%;
-        padding: 0 10px;
+        padding: 0 5px;
     }
-    
+
     .qr-info p {
-        font-size: 14px;
+        font-size: 12px;
         margin-bottom: 8px;
     }
-    
+
     .qr-url {
-        font-size: 12px;
+        font-size: 10px;
         word-break: break-all;
     }
-    
+
     .qr-copy-btn {
-        padding: 8px 16px;
-        font-size: 12px;
+        padding: 6px 12px;
+        font-size: 10px;
         margin-top: 8px;
     }
 }
 
 @media (max-width: 480px) {
+    .sidebar-left {
+        padding: 8px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .logo i {
+        font-size: 20px;
+    }
+
     .nav-item {
-        padding: 6px 3px;
-        font-size: 11px;
+        padding: 6px 2px;
+        font-size: 9px;
     }
-    
-    .nav-item span {
-        font-size: 10px;
-    }
-    
+
     .nav-item i {
         font-size: 12px;
-        margin-right: 3px;
     }
-    
-    .calculator-buttons {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 3px;
-        padding: 0 3px;
+
+    .nav-item span {
+        font-size: 7px;
     }
-    
-    .btn {
-        padding: 10px 5px;
-        font-size: 12px;
-        border-radius: 4px;
+
+    .main-content {
+        padding: 8px;
     }
-    
-    .btn.zero {
-        grid-column: span 2;
+
+    .calculator-container {
+        padding: 8px;
     }
-    
-    .btn.operator.equals {
-        grid-row: span 2;
+
+    .display-container {
+        padding: 12px;
+        margin-bottom: 12px;
     }
-    
+
     .display {
-        font-size: 28px;
+        font-size: 24px;
+        min-height: 45px;
     }
-    
-    /* Estilos QR para pantallas muy pequeñas */
+
+    .calculator-buttons {
+        gap: 3px;
+    }
+
+    .btn {
+        padding: 8px 1px;
+        font-size: 11px;
+        min-height: 35px;
+    }
+
+    /* QR para pantallas muy pequeñas */
     .qr-section {
-        padding: 15px;
+        padding: 10px;
     }
-    
+
     .qr-section h2 {
-        font-size: 18px;
-        margin-bottom: 10px;
+        font-size: 16px;
     }
-    
+
     .qr-code img {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
     }
-    
+
     .qr-info p {
-        font-size: 12px;
+        font-size: 11px;
     }
-    
+
     .qr-url {
-        font-size: 11px;
+        font-size: 9px;
     }
-    
+
     .qr-copy-btn {
-        padding: 6px 12px;
-        font-size: 11px;
+        padding: 5px 10px;
+        font-size: 9px;
     }
 }

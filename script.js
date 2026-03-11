@@ -16,20 +16,6 @@ class ScientificCalculator {
         this.initializeEventListeners();
         this.loadHistory();
         this.updateDisplay();
-        
-        // Agregar event listener del botón móvil después de que el DOM esté listo
-        setTimeout(() => {
-            const mobileToggleBtn = document.getElementById('mobileToggleBtn');
-            if (mobileToggleBtn) {
-                mobileToggleBtn.addEventListener('click', () => {
-                    console.log('Botón móvil presionado');
-                    this.toggleMobileMode();
-                });
-                console.log('Event listener del botón móvil agregado');
-            } else {
-                console.log('Botón móvil no encontrado');
-            }
-        }, 100);
     }
 
     initializeEventListeners() {
@@ -44,6 +30,18 @@ class ScientificCalculator {
         document.addEventListener('keydown', (e) => {
             this.handleKeyPress(e);
         });
+
+        // Botón de modo móvil
+        const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+        if (mobileToggleBtn) {
+            mobileToggleBtn.addEventListener('click', () => {
+                console.log('Botón móvil presionado');
+                this.toggleMobileMode();
+            });
+            console.log('Event listener del botón móvil agregado');
+        } else {
+            console.log('Botón móvil no encontrado');
+        }
 
         // Navegación lateral
         document.querySelectorAll('.nav-item').forEach(item => {
@@ -62,14 +60,6 @@ class ScientificCalculator {
                 e.currentTarget.classList.add('active');
             });
         });
-
-        // Botón de modo móvil
-        const mobileToggleBtn = document.getElementById('mobileToggleBtn');
-        if (mobileToggleBtn) {
-            mobileToggleBtn.addEventListener('click', () => {
-                this.toggleMobileMode();
-            });
-        }
 
         // Botón de Código QR
         const qrToggleBtn = document.getElementById('qrToggleBtn');
