@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcUtils - Calculadora Científica Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Izquierdo -->
+        <aside class="sidebar-left">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-calculator"></i>
+                    <span>CalcUtils</span>
+                </div>
+                <div class="mobile-toggle-btn" id="mobileToggleBtn">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-item active" data-mode="basica">
+                    <i class="fas fa-calculator"></i>
+                    <span>Básica</span>
+                </div>
+                <div class="nav-item" data-mode="cientifica">
+                    <i class="fas fa-square-root-alt"></i>
+                    <span>Científica</span>
+                </div>
+                <div class="nav-item" id="qrToggleBtn">
+                    <i class="fas fa-qrcode"></i>
+                    <span>Código QR</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <div class="calculator-container">
+                <!-- Display -->
+                <div class="display-container">
+                    <div class="display-header">
+                        <span class="mode-indicator">DEG</span>
+                        <button class="history-toggle">
+                            <i class="fas fa-history"></i>
+                        </button>
+                    </div>
+                    <div class="display" id="display">0</div>
+                </div>
+
+                <!-- Botones de Calculadora -->
+                <div class="calculator-buttons" id="calculatorButtons">
+                    <!-- Fila 1 - Funciones de Memoria (solo en modo científico) -->
+                    <button class="btn memory" data-action="MC">MC</button>
+                    <button class="btn memory" data-action="MR">MR</button>
+                    <button class="btn memory" data-action="M+">M+</button>
+                    <button class="btn memory" data-action="M-">M-</button>
+                    <button class="btn memory" data-action="MS">MS</button>
+                    <button class="btn memory" data-action="M">M</button>
+                    
+                    <!-- Fila 2 - Funciones Científicas (solo en modo científico) -->
+                    <button class="btn scientific" data-action="sin">sin</button>
+                    <button class="btn scientific" data-action="cos">cos</button>
+                    <button class="btn scientific" data-action="tan">tan</button>
+                    <button class="btn scientific" data-action="log">log</button>
+                    <button class="btn scientific" data-action="ln">ln</button>
+                    <button class="btn operator" data-action="/">÷</button>
+                    
+                    <!-- Fila 3 - Funciones Científicas (solo en modo científico) -->
+                    <button class="btn scientific" data-action="x2">x²</button>
+                    <button class="btn scientific" data-action="sqrt">√</button>
+                    <button class="btn scientific" data-action="pow">xʸ</button>
+                    <button class="btn scientific" data-action="factorial">n!</button>
+                    <button class="btn scientific" data-action="reciprocal">1/x</button>
+                    <button class="btn operator" data-action="*">×</button>
+                    
+                    <!-- Fila 4 - Números y Operaciones Científicas (solo en modo científico) -->
+                    <button class="btn scientific" data-action="pi">π</button>
+                    <button class="btn scientific" data-action="e">e</button>
+                    <button class="btn number" data-value="7">7</button>
+                    <button class="btn number" data-value="8">8</button>
+                    <button class="btn number" data-value="9">9</button>
+                    <button class="btn operator" data-action="-">−</button>
+                    
+                    <!-- Fila 5 - Funciones Científicas (solo en modo científico) -->
+                    <button class="btn scientific" data-action="abs">|x|</button>
+                    <button class="btn scientific" data-action="exp">exp</button>
+                    <button class="btn number" data-value="4">4</button>
+                    <button class="btn number" data-value="5">5</button>
+                    <button class="btn number" data-value="6">6</button>
+                    <button class="btn operator" data-action="+">+</button>
+                    
+                    <!-- Fila 6 - Funciones Científicas (solo en modo científico) -->
+                    <button class="btn scientific" data-action="mod">mod</button>
+                    <button class="btn scientific" data-action="lparen">(</button>
+                    <button class="btn number" data-value="1">1</button>
+                    <button class="btn number" data-value="2">2</button>
+                    <button class="btn number" data-value="3">3</button>
+                    <button class="btn operator equals" data-action="=">=</button>
+                    
+                    <!-- Fila 7 - Funciones Científicas (solo en modo científico) -->
+                    <button class="btn scientific" data-action="rparen">)</button>
+                    <button class="btn scientific" data-action="percent">%</button>
+                    <button class="btn number zero" data-value="0">0</button>
+                    <button class="btn decimal" data-action=".">.</button>
+                    <button class="btn clear" data-action="C">C</button>
+                    <button class="btn backspace" data-action="backspace">⌫</button>
+                </div>
+                
+                <!-- Botones de Calculadora Básica (ordenados correctamente) -->
+                <div class="calculator-buttons basic-layout" id="basicCalculatorButtons" style="display: none;">
+                    <!-- Fila 1 -->
+                    <button class="btn clear" data-action="C">C</button>
+                    <button class="btn backspace" data-action="backspace">⌫</button>
+                    <button class="btn operator" data-action="%">%</button>
+                    <button class="btn operator" data-action="/">÷</button>
+                    
+                    <!-- Fila 2 -->
+                    <button class="btn number" data-value="7">7</button>
+                    <button class="btn number" data-value="8">8</button>
+                    <button class="btn number" data-value="9">9</button>
+                    <button class="btn operator" data-action="*">×</button>
+                    
+                    <!-- Fila 3 -->
+                    <button class="btn number" data-value="4">4</button>
+                    <button class="btn number" data-value="5">5</button>
+                    <button class="btn number" data-value="6">6</button>
+                    <button class="btn operator" data-action="-">−</button>
+                    
+                    <!-- Fila 4 -->
+                    <button class="btn number" data-value="1">1</button>
+                    <button class="btn number" data-value="2">2</button>
+                    <button class="btn number" data-value="3">3</button>
+                    <button class="btn operator equals" data-action="=">=</button>
+                    
+                    <!-- Fila 5 -->
+                    <button class="btn number zero" data-value="0">0</button>
+                    <button class="btn decimal" data-action=".">.</button>
+                    <button class="btn operator" data-action="+">+</button>
+                </div>
+            </div>
+
+            <!-- Sección de Código QR -->
+            <div class="qr-section" id="qrSection" style="display: none;">
+                <h2>Escanea el Código QR</h2>
+                <div class="qr-container">
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/tu-usuario/calculadora" alt="Código QR GitHub">
+                    </div>
+                    <div class="qr-info">
+                        <p>Escanea este código QR para visitar nuestro repositorio en GitHub</p>
+                        <p class="qr-url">https://github.com/tu-usuario/calculadora</p>
+                        <button class="qr-copy-btn" id="copyUrlBtn">Copiar URL</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Promocional -->
+            <div class="promo-section">
+                <h2>Calculadora Científica Online Gratis por Calculadora5to.com</h2>
+                <p>
+                    Nuestra calculadora científica online gratuita es perfecta para estudiantes, profesionales y cualquiera que necesite realizar cálculos complejos. 
+                    Con funciones avanzadas como trigonometría, logaritmos, exponentes y más, puedes resolver problemas matemáticos con facilidad. 
+                    No requiere descarga y es completamente gratuita.
+                </p>
+            </div>
+        </main>
+
+        <!-- Sidebar Derecho - Historial -->
+        <aside class="sidebar-right" id="historySidebar">
+            <div class="history-header">
+                <h3>Historial</h3>
+                <button class="close-history" id="closeHistory">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="history-content" id="historyContent">
+                <div class="history-item">
+                    <span class="history-expression">10+10</span>
+                    <span class="history-result">= 20</span>
+                </div>
+                <div class="history-item">
+                    <span class="history-expression">2+2</span>
+                    <span class="history-result">= 4</span>
+                </div>
+            </div>
+            <button class="clear-history-btn" id="clearHistory">Limpiar Historial</button>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
